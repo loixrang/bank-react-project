@@ -3,32 +3,50 @@ import errorMessage from "./errorMessage";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [loginStatus, setLoginStatus] = useState(() => JSON.parse(localStorage.getItem('loggedIn') || '[]'));
-  const navigate = useNavigate()
+  const [loginStatus, setLoginStatus] = useState(() =>
+    JSON.parse(localStorage.getItem("loggedIn") || "[]"),
+  );
+  const navigate = useNavigate();
+  useEffect(()=> {
+    if (loginStatus) {
+      navigate("/home");
+      return
+    } 
+    navigate("/")
+  }, [])
   function login() {
-    const getInput = (q: string) => document.getElementById(q) as HTMLInputElement;
+    const getInput = (q: string) =>
+      document.getElementById(q) as HTMLInputElement;
     const username = getInput("username").value.trim();
     const balance = Number(getInput("balance").value);
 
     if (balance === 0 && username === "") {
-      errorMessage(getInput("username"), getInput("balance"), "red", "red")
-      getInput("username").focus()
-      console.log(balance)
-      console.log(username)
-      return
-    } else if(/\d/.test(username) || username == '') {
-      errorMessage(getInput("username"), getInput("balance"), "red", "blue")
-      getInput("username").focus()
-      getInput("username").value = ''
-      getInput("username").placeholder = "Enter a valid username"
-    } else if(isNaN(balance) || balance <= 0) {
-      errorMessage(getInput("balance"), getInput("username"), "red", "blue")
-      getInput("balance").focus()
-      getInput("balance").value = ''
-      getInput("balance").placeholder = "Enter a valid number"
-    } else if(balance <= 10000) {
-      navigate("/home")
-    }
+      errorMessage(getInput("username"), getInput("balance"), "red", "red");
+      getInput("username").focus();
+      console.log(balance);
+      console.log(username);
+      return;
+    } else if (/\d/.test(username) || username == "") {
+      errorMessage(getInput("username"), getInput("balance"), "red", "blue");
+      getInput("username").focus();
+      getInput("username").value = "";
+      getInput("username").placeholder = "Enter a valid username";
+    } else if (isNaN(balance) || balance <= 0) {
+      errorMessage(getInput("balance"), getInput("username"), "red", "blue");
+      getInput("balance").focus();
+      getInput("balance").value = "";
+      getInput("balance").placeholder = "Enter a valid number";
+    } else if (balance <= 10000) {
+      let loggedIn = true;
+      localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
+      localStorage.setItem("name", username);
+      localStorage.setItem("balance", JSON.stringify(balance));
+      setLoginStatus(loggedIn);
+      navigate("/home");
+    } else {
+    errorMessage(getInput("balance"), getInput("username"), "red", "blue")
+    getInput("balance").focus()
+  }
   }
 
   return (
@@ -68,11 +86,7 @@ const LoginPage = () => {
             id="balance"
             placeholder="Between 0 - 10,000"
           />
-          <button
-            id="login-btn"
-            onClick={login}
-            className="login-div-button"
-          >
+          <button id="login-btn" onClick={login} className="login-div-button">
             <img
               className="h-5"
               src="src/assets/images/icon-login-white.svg"

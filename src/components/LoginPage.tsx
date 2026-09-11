@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import errorMessage from "./errorMessage";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [loginStatus, setLoginStatus] = useState(() =>
-    JSON.parse(localStorage.getItem("loggedIn") || "[]"),
+    JSON.parse(localStorage.getItem("loggedIn") || "false"),
   );
   const navigate = useNavigate();
   useEffect(()=> {
-    if (loginStatus) {
+    if (loginStatus == true) {
       navigate("/home");
-      return
-    } 
-    navigate("/")
+    } else if(loginStatus == false){
+      console.log("Staying here")
+    }
   }, [])
   function login() {
     const getInput = (q: string) =>

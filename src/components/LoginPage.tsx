@@ -3,20 +3,21 @@ import errorMessage from "./errorMessage";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const getInput = (q: string) =>
+    document.getElementById(q) as HTMLInputElement;
   const [loginStatus, setLoginStatus] = useState(() =>
     JSON.parse(localStorage.getItem("loggedIn") || "false"),
   );
   const navigate = useNavigate();
-  useEffect(()=> {
+  useEffect(() => {
     if (loginStatus == true) {
       navigate("/home");
-    } else if(loginStatus == false){
-      console.log("Staying here")
+    } else if (loginStatus == false) {
+      getInput("username").value = ''
+      getInput("balance").value = ''
     }
-  }, [])
+  }, []);
   function login() {
-    const getInput = (q: string) =>
-      document.getElementById(q) as HTMLInputElement;
     const username = getInput("username").value.trim();
     const balance = Number(getInput("balance").value);
 
@@ -44,9 +45,9 @@ const LoginPage = () => {
       setLoginStatus(loggedIn);
       navigate("/home");
     } else {
-    errorMessage(getInput("balance"), getInput("username"), "red", "blue")
-    getInput("balance").focus()
-  }
+      errorMessage(getInput("balance"), getInput("username"), "red", "blue");
+      getInput("balance").focus();
+    }
   }
 
   return (

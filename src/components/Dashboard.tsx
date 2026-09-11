@@ -18,6 +18,7 @@ const Dashboard = () => {
     if (loginStatus == false) {
       navigate("/")
     }
+
   }, [])
   return (
     <section id="home" className="">

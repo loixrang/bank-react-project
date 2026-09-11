@@ -1,1 +1,75 @@
-@import "tailwindcss"
+@import "tailwindcss";
+@font-face {
+  font-family: Inter;
+  src: url(/src/assets/fonts/Inter-VariableFont_opsz\,wght.ttf);
+}
+@theme {
+  --color-primary-500: #24235F;
+  --color-primary-600: #2E218E;
+  --color-body: hsl(228,45%,98%);
+  --color-accent: #f59e0b;
+  --color-surface: #0f172a;
+}
+body {
+  font-family: Inter;
+  @apply bg-body
+}
+.heading {
+  @apply fixed left-1/2 -translate-x-1/2 backdrop-blur-xl bg-white/40 flex justify-between items-center w-[95dvw]  my-2 drop-shadow-sm p-5 rounded-3xl z-10
+}
+.banner {
+  @apply bg-primary-500 flex w-[93dvw] mx-auto rounded-2xl text-white p-7
+}
+.active-link {
+  @apply text-white bg-primary-600 px-1 rounded-md
+}
+.interact {
+  @apply pt-10
+}
+li{
+  @apply transition-all duration-300 ease-linear px-1 py-1
+}
+
+li:hover {
+  @apply text-white bg-primary-600 rounded-md cursor-pointer
+}
+.cards {
+  @apply bg-white rounded-xl drop-shadow-xl z-0 p-5
+}
+
+.activity {
+  @apply bg-white mt-10 mb-20 w-[85dvw] mx-auto rounded-2xl drop-shadow-2xl p-6
+}
+.active-trans {
+  @apply bg-[#5B35D5] text-white px-1 rounded-md
+}
+.active-with {
+  @apply bg-[#1250d6] text-white px-1 rounded-md
+}
+.active-dep {
+  @apply bg-[#2f8f34] text-white px-1 rounded-md
+}
+
+.transfer-op:hover {
+  @apply bg-[#5B35D5] text-white transition-all duration-300 ease-linear
+}
+.withdraw-op:hover {
+  @apply bg-[#1250d6] text-white transition-all duration-300 ease-linear
+}
+.deposit-op:hover {
+  @apply bg-[#2f8f34] text-white transition-all duration-300 ease-linear
+}
+
+#list {
+  @apply grid gap-2 mt-3 text-[#17213D]
+}
+
+#list li {
+  @apply bg-transparent border-t border-b p-1
+}
+#list li:hover {
+  @apply text-purple-700 bg-[#d7dbee] px-3 pb-1 rounded-md
+}
+/* button:hover {
+  transition: 300ms ease-in-out all;
+} */

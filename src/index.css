@@ -14,6 +14,27 @@ body {
   font-family: Inter;
   @apply bg-body
 }
+.login-sec {
+  @apply flex items-center flex-col gap-10 justify-center h-dvh text-[#68779B]
+}
+.login-div1 {
+  @apply bg-white lg:grid grid-cols-2 items-center justify-center drop-shadow-2xl rounded-2xl
+}
+.login-div2 {
+  @apply h-full flex flex-col gap-2 justify-evenly p-5 lg:p-15
+}
+.login-div-h1 {
+  @apply flex text-2xl lg:text-4xl font-bold text-black items-center
+}
+.login-div-input {
+  @apply border-2 text-[black] rounded-lg p-2 focus:border-0 border-[blue]
+}
+.login-div-button {
+  @apply bg-linear-to-t cursor-pointer hover:opacity-90 active:opacity-80 from-primary-600 to-[#6240D8] flex items-center justify-center gap-3 rounded-md py-2 text-white
+}
+.login-div3 {
+  @apply hidden lg:flex flex-col h-full rounded-2xl items-center gap-3 justify-center p-15 bg-linear-to-r from-primary-600 to-[#6240D8]
+}
 .heading {
   @apply fixed left-1/2 -translate-x-1/2 backdrop-blur-xl bg-white/40 flex justify-between items-center w-[95dvw]  my-2 drop-shadow-sm p-5 rounded-3xl z-10
 }

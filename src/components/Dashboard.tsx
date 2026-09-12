@@ -15,13 +15,14 @@ const Dashboard = () => {
   const [username, setUserName] = useState(
     () => localStorage.getItem("name") || "Empty",
   );
-  const [balance, setBalance] = useState(() =>
-    JSON.parse(localStorage.getItem("balance") || "No Balance"),
-  );
+  const [balance, setBalance] = useState(() => {
+  const savedBalance = localStorage.getItem("balance");
+  return savedBalance ? JSON.parse(savedBalance) : 0;
+});
   const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus == false) {
-      navigate("/");
+      navigate("/login");
       return;
     }
     document.title = `Loixrang Bank - ${pageLabels[activePage]}`;

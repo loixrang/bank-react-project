@@ -43,7 +43,7 @@ const LoginPage = () => {
       localStorage.setItem("name", username);
       localStorage.setItem("balance", JSON.stringify(balance));
       setLoginStatus(loggedIn);
-      navigate("/home");
+      navigate("/");
     } else {
       errorMessage(getInput("balance"), getInput("username"), "red", "blue");
       getInput("balance").focus();

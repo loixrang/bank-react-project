@@ -44,9 +44,6 @@ body {
 .active-link {
   @apply text-white bg-primary-600 px-1 rounded-md
 }
-.interact {
-  @apply pt-10
-}
 li{
   @apply transition-all duration-300 ease-linear px-1 py-1
 }

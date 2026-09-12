@@ -11,7 +11,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus == true) {
-      navigate("/home");
+      navigate("/");
     } else if (loginStatus == false) {
       getInput("username").value = ''
       getInput("balance").value = ''

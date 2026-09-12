@@ -1,6 +1,6 @@
 const Withdraw = () => {
   return (
-    <section id="withdraw" className="hidden">
+    <section id="withdraw" className="">
       <h1 className="font-black mb-2 text-3xl sm:text-6xl text-[#1250d6] text-center">
         Withdraw
       </h1>

@@ -1,6 +1,6 @@
 const Transfer = () => {
   return (
-    <section id="transfer" className="hidden">
+    <section id="transfer" className="">
       <h1 className="font-black text-3xl sm:text-6xl text-[#5B35D5] text-center">
         Transfer
       </h1>

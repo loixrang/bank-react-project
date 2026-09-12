@@ -1,6 +1,6 @@
 const Deposit = () => {
   return (
-    <section id="deposit" className="hidden">
+    <section id="deposit">
       <h1 className="font-black text-3xl sm:text-6xl text-[#2f8f34] text-center">
         Deposit
       </h1>

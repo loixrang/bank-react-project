@@ -1,6 +1,6 @@
-const History = () => {
+const Recents = () => {
   return (
-    <section id="history" className="hidden p-5">
+    <section id="history" className="p-5">
       <h1 className="font-black text-2xl sm:text-6xl w-full text-[#17213D] text-center">
         Transactions
       </h1>
@@ -9,4 +9,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default Recents;

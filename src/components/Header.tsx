@@ -3,10 +3,9 @@ import type { ActivePage } from "../types";
 import NavigateLinks from "./Navigation";
 export interface HeaderProps {
   activePage: ActivePage;
-  setActivePage: React.Dispatch<React.SetStateAction<ActivePage>>;
 }
 
-const Header = ({ activePage, setActivePage }: HeaderProps) => {
+const Header = ({ activePage }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((open) => !open);
   const closeMenu = () => setMenuOpen(false);
@@ -66,11 +65,11 @@ const Header = ({ activePage, setActivePage }: HeaderProps) => {
             onClick={closeMenu}
             className={`${menuOpen ? "flex" : "hidden"} flex-col gap-2 absolute bg-white/90 w-30 drop-shadow-2xl p-3 right-0 rounded-xl top-15`}
           >
-            <NavigateLinks activePage={activePage} setActivePage={setActivePage}/>
+            <NavigateLinks activePage={activePage}/>
           </ul>
         </nav>
         <ul className="hidden sm:flex gap-5">
-          <NavigateLinks activePage={activePage} setActivePage={setActivePage}/>
+          <NavigateLinks activePage={activePage}/>
         </ul>
       </header>
     </div>

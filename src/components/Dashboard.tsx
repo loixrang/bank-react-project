@@ -6,8 +6,10 @@ import Transfer from "./functions/Transfer";
 import Withdraw from "./functions/Withdraw";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import type { ActivePage } from "../types";
 
 const Dashboard = () => {
+  const [activePage, setActivePage] = useState<ActivePage>("Home")
   const [loginStatus, setLoginStatus] = useState(() =>
     JSON.parse(localStorage.getItem("loggedIn") || "false"),
   );
@@ -17,12 +19,13 @@ const Dashboard = () => {
   useEffect(()=> {
     if (loginStatus == false) {
       navigate("/")
+      return
     }
-
-  }, [])
+    document.title = `Loixrang Bank - ${activePage}`
+  }, [activePage])
   return (
     <section id="home" className="">
-      <Header />
+      <Header activePage={activePage} setActivePage={setActivePage}/>
       <main>
         <Banner name={username} balance={balance} />
         <div className="hidden interact text-[#17213D]">

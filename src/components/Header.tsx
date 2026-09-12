@@ -1,28 +1,33 @@
 import { useEffect, useRef, useState } from "react";
+import type { ActivePage } from "../types";
+import NavigateLinks from "./Navigation";
+export interface HeaderProps {
+  activePage: ActivePage;
+  setActivePage: React.Dispatch<React.SetStateAction<ActivePage>>;
+}
 
-const Header = () => {
+const Header = ({ activePage, setActivePage }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((open) => !open);
   const closeMenu = () => setMenuOpen(false);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleDocumentClick = (e: MouseEvent) => {
-    const menuRef = useRef<HTMLUListElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-
     if (
       menuRef.current &&
       buttonRef.current &&
       !menuRef.current.contains(e.target as Node) &&
       !buttonRef.current.contains(e.target as Node)
     ) {
-      setMenuOpen(false)
+      setMenuOpen(false);
     }
   };
 
   useEffect(() => {
     document.addEventListener("click", handleDocumentClick);
     return () => document.removeEventListener("click", handleDocumentClick);
-  }, []);
+  }, [handleDocumentClick]);
 
   return (
     <div className="sm:h-30 h-25">
@@ -32,6 +37,7 @@ const Header = () => {
         </h1>
         <nav className="sm:hidden grid grid-rows-1 relative items-center justify-center gap-2">
           <button
+            ref={buttonRef}
             onClick={toggleMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -55,25 +61,16 @@ const Header = () => {
             </svg>
           </button>
           <ul
+            ref={menuRef}
             id="mobile-menu"
             onClick={closeMenu}
             className={`${menuOpen ? "flex" : "hidden"} flex-col gap-2 absolute bg-white/90 w-30 drop-shadow-2xl p-3 right-0 rounded-xl top-15`}
           >
-            <li className="active-link homePage">Home</li>
-            <li className="withdraw-op">Withdraw</li>
-            <li className="transfer-op">Transfer</li>
-            <li className="deposit-op">Deposit</li>
-            <li className="my-1 transHistory">History</li>
-            <li className="logout">Logout</li>
+            <NavigateLinks activePage={activePage} setActivePage={setActivePage}/>
           </ul>
         </nav>
         <ul className="hidden sm:flex gap-5">
-          <li className="active-link homePage">Home</li>
-          <li className="withdraw-op">Withdraw</li>
-          <li className="transfer-op">Transfer</li>
-          <li className="deposit-op">Deposit</li>
-          <li className="transHistory">History</li>
-          <li className="logout">Logout</li>
+          <NavigateLinks activePage={activePage} setActivePage={setActivePage}/>
         </ul>
       </header>
     </div>

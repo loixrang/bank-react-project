@@ -4,7 +4,6 @@ import LoginPage from "./components/LoginPage";
 
 
 function App() {
-  Route
   return (
     <BrowserRouter>
       <Routes>

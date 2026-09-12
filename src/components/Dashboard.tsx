@@ -8,7 +8,6 @@ import Activity from "./Activity";
 const Dashboard = () => {
   const location = useLocation();
   const segment = location.pathname.replace(/^\/\/?/, "")
-  console.log(segment)
   const activePage = (segment || "Home") as ActivePage;
   const [loginStatus, setLoginStatus] = useState(() =>
     JSON.parse(localStorage.getItem("loggedIn") || "false"),

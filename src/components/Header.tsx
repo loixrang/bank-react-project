@@ -41,9 +41,9 @@ const Header = ({ activePage }: HeaderProps) => {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             id="hamMenu"
-            className={`cursor-pointer py-1 flex gap-1 ${menuOpen ? "bg-transparent text-[#5B35D5]" : ""} items-center justify-center`}
+            className={`cursor-pointer py-1 flex gap-1 ${menuOpen ? "bg-transparent text-primary-600" : "active-link"} items-center justify-center`}
           >
-            <span id="chosen-activity" className=""></span>
+            <span id="chosen-activity" className="">{activePage}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

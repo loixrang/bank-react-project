@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 const Withdraw = () => {
+  const [balance, setBalance] = useState(() => {
+    const getBalance = localStorage.getItem("balance");
+    return getBalance ? JSON.parse(getBalance) : 0
+  })
   return (
     <section id="withdraw" className="">
       <h1 className="font-black mb-2 text-3xl sm:text-6xl text-[#1250d6] text-center">

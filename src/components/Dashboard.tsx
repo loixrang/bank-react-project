@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [username, setUserName] = useState(
     () => localStorage.getItem("name") || "Empty",
   );
-  const [balance, setBalance] = useState(() => {
+  const [balance, setBalance] = useState<number>(() => {
   const savedBalance = localStorage.getItem("balance");
   return savedBalance ? JSON.parse(savedBalance) : 0;
 });
@@ -33,7 +33,7 @@ const Dashboard = () => {
       <main>
         <Banner name={username} balance={balance} />
         <div className="activity">
-          {activePage === "Home" ? <Activity/> : <Outlet />}
+          {activePage === "Home" ? <Activity/> : <Outlet context={[balance, setBalance]}/>}
           <p className="font-semibold text-lg hidden pl-3" id="message"></p>
         </div>
       </main>

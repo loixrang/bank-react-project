@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import type { ActivePage } from "../types";
-import { pageLabels } from "../types";
+import type { ActivePage } from "../data/types";
+import { pageLabels } from "../data/types";
 import { type HeaderProps } from "./Header";
 
 const NavigateLinks = ({ activePage }: HeaderProps) => {
@@ -10,13 +10,17 @@ const NavigateLinks = ({ activePage }: HeaderProps) => {
       <li
         className={activePage === page ? "active-link" : ""}
         onClick={() => {
-          navigate(page === "Home" ? "/" : `/${page}`)
+          navigate(page === "Home" ? "/" : `/${page}`);
         }}
       >
         {label}
       </li>
     );
   };
+  const logout = () => {
+    localStorage.clear()
+    navigate("/login")
+  }
   return (
     <>
       {navItems("Home", pageLabels.Home)}
@@ -24,7 +28,7 @@ const NavigateLinks = ({ activePage }: HeaderProps) => {
       {navItems("Transfer", pageLabels.Transfer)}
       {navItems("Deposit", pageLabels.Deposit)}
       {navItems("History", pageLabels.History)}
-      <li className="logout">Logout</li>
+      <li className="logout" onClick={logout}>Logout</li>
     </>
   );
 };

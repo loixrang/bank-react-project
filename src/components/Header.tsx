@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { ActivePage } from "../types";
+import type { ActivePage } from "../data/types";
 import NavigateLinks from "./Navigation";
 export interface HeaderProps {
   activePage: ActivePage;
@@ -36,14 +36,17 @@ const Header = ({ activePage }: HeaderProps) => {
         </h1>
         <nav className="sm:hidden grid grid-rows-1 relative items-center justify-center gap-2">
           <button
+            title="Activity"
             ref={buttonRef}
             onClick={toggleMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             id="hamMenu"
-            className={`cursor-pointer py-1 flex gap-1 ${menuOpen ? "bg-transparent text-primary-600" : "active-link"} items-center justify-center`}
+            className={`cursor-pointer py-1 flex gap-1 ${menuOpen ? "active-link text-primary-600" : "active-link"} items-center justify-center`}
           >
-            <span id="chosen-activity" className="">{activePage}</span>
+            <span id="chosen-activity" className="">
+              {activePage}
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -65,11 +68,11 @@ const Header = ({ activePage }: HeaderProps) => {
             onClick={closeMenu}
             className={`${menuOpen ? "flex" : "hidden"} flex-col gap-2 absolute bg-white/90 w-30 drop-shadow-2xl p-3 right-0 rounded-xl top-15`}
           >
-            <NavigateLinks activePage={activePage}/>
+            <NavigateLinks activePage={activePage} />
           </ul>
         </nav>
         <ul className="hidden sm:flex gap-5">
-          <NavigateLinks activePage={activePage}/>
+          <NavigateLinks activePage={activePage} />
         </ul>
       </header>
     </div>

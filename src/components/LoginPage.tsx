@@ -13,9 +13,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus == true) {
-      navigate("/");
+      void navigate("/");
     }
-  }, []);
+  }, [loginStatus, navigate]);
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d+$/.test(value)) {
@@ -63,7 +63,7 @@ const LoginPage = () => {
       localStorage.setItem("name", username);
       localStorage.setItem("balance", JSON.stringify(balance));
       setLoginStatus(loggedIn);
-      navigate("/");
+      void navigate("/");
     }
   }
 

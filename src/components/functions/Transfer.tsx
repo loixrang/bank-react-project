@@ -27,7 +27,7 @@ const Transfer = () => {
     setBankName(e.target.value);
   };
   const checkDetails = () => {
-    for (const [person, details] of Object.entries(Persons)) {
+    for (const details of Object.values(Persons)) {
       if (
         accountNumber === details.accountNumber &&
         bankName === details.bank
@@ -63,6 +63,7 @@ const Transfer = () => {
         `Your transferred N${accountNumber}`,
       ];
       localStorage.setItem("history", JSON.stringify(activity));
+      setHistory(activity);
       setTransferScreen(true);
       setAccountNumber(0);
       setMessage("");

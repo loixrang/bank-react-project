@@ -46,6 +46,7 @@ const Withdraw = () => {
       setBalance(newBalance)
       localStorage.setItem("history", JSON.stringify(activity));
       localStorage.setItem("balance", JSON.stringify(newBalance));
+      setHistory(activity);
     }
   };
   return (

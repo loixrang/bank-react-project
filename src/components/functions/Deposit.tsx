@@ -24,7 +24,7 @@ const Deposit = () => {
     setMessage(`Deposit of ${amount} successfull`);
     const activity: string[] = [...recent, `You deposited N${amount}`];
     localStorage.setItem("history", JSON.stringify(activity));
-    console.log(activity);
+    setRecent(activity);
   };
 
   const deposit = () => {

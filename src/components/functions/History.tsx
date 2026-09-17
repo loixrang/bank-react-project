@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Recents = () => {
-  const [transactions, setTransactions] = useState<string[]>([]);
-
-  useEffect(() => {
-    const savedTransactions = JSON.parse(
-      localStorage.getItem("history") || "[]",
-    );
-
-    if (Array.isArray(savedTransactions)) {
-      setTransactions(savedTransactions);
+  const [transactions] = useState<string[]>(() => {
+    try {
+      const savedTransactions = JSON.parse(
+        localStorage.getItem("history") || "[]",
+      );
+      return Array.isArray(savedTransactions) ? savedTransactions : [];
+    } catch {
+      return [];
     }
-  }, []);
+  });
 
   return (
     <section id="history" className="p-5">

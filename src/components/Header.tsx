@@ -12,21 +12,21 @@ const Header = ({ activePage }: HeaderProps) => {
   const menuRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const handleDocumentClick = (e: MouseEvent) => {
-    if (
-      menuRef.current &&
-      buttonRef.current &&
-      !menuRef.current.contains(e.target as Node) &&
-      !buttonRef.current.contains(e.target as Node)
-    ) {
-      setMenuOpen(false);
-    }
-  };
-
   useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        buttonRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        !buttonRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
     document.addEventListener("click", handleDocumentClick);
     return () => document.removeEventListener("click", handleDocumentClick);
-  }, [handleDocumentClick]);
+  }, []);
 
   return (
     <div className="sm:h-30 h-25">

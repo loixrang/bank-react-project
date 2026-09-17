@@ -5,7 +5,6 @@ function errorMessage(
   oC: string,
 ) {
   //for deposit - general
-  const test = () => console.log("Working");
   if (aE && oE) {
     aE.style.border = `2px solid ${aC}`;
     aE.style.outline = "none";
@@ -16,8 +15,6 @@ function errorMessage(
     //for withdrawal
     aE.style.border = `2px solid ${aC}`;
     aE.style.outline = "none";
-  } else {
-    test();
   }
 }
 

@@ -9,10 +9,10 @@ const Dashboard = () => {
   const location = useLocation();
   const segment = location.pathname.replace(/^\/\/?/, "");
   const activePage = (segment || "Home") as ActivePage;
-  const [loginStatus, setLoginStatus] = useState(() =>
+  const [loginStatus] = useState(() =>
     JSON.parse(localStorage.getItem("loggedIn") || "false"),
   );
-  const [username, setUserName] = useState(
+  const [username] = useState(
     () => localStorage.getItem("name") || "Empty",
   );
   const [balance, setBalance] = useState<number>(() => {
@@ -22,11 +22,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus == false) {
-      navigate("/login");
+      void navigate("/login");
       return;
     }
     document.title = `Loixrang Bank ${pageLabels[activePage] === "Home" ? "" : `${`- ${pageLabels[activePage]}`}`}`;
-  }, [activePage, loginStatus]);
+  }, [activePage, loginStatus, navigate]);
   return (
     <section id="home" className="">
       <Header activePage={activePage} />

@@ -10,7 +10,7 @@ const NavigateLinks = ({ activePage }: HeaderProps) => {
       <li
         className={activePage === page ? "active-link" : ""}
         onClick={() => {
-          navigate(page === "Home" ? "/" : `/${page}`);
+          void navigate(page === "Home" ? "/" : `/${page}`);
         }}
       >
         {label}
@@ -18,9 +18,9 @@ const NavigateLinks = ({ activePage }: HeaderProps) => {
     );
   };
   const logout = () => {
-    localStorage.clear()
-    navigate("/login")
-  }
+    localStorage.clear();
+    void navigate("/login");
+  };
   return (
     <>
       {navItems("Home", pageLabels.Home)}

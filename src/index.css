@@ -27,7 +27,7 @@ body {
   @apply flex text-2xl lg:text-4xl font-bold text-black items-center
 }
 .login-div-input {
-  @apply border-2 text-[black] rounded-lg p-2 focus:border-0 border-[blue]
+  @apply border-2 text-[black] rounded-lg p-2 focus:outline-[blue] focus:border-0 border-[blue]
 }
 .login-div-button {
   @apply bg-linear-to-t cursor-pointer hover:opacity-90 active:opacity-80 from-primary-600 to-[#6240D8] flex items-center justify-center gap-3 rounded-md py-2 text-white

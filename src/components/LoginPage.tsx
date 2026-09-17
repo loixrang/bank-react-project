@@ -8,35 +8,55 @@ const LoginPage = () => {
   const [loginStatus, setLoginStatus] = useState(() =>
     JSON.parse(localStorage.getItem("loggedIn") || "false"),
   );
+  const [username, setUsername] = useState<string>("");
+  const [balance, setBalance] = useState<number>(0);
   const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus == true) {
       navigate("/");
-    } else if (loginStatus == false) {
-      getInput("username").value = ''
-      getInput("balance").value = ''
     }
   }, []);
+  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d+$/.test(value)) {
+      e.target.style.transform = "scale(1.05)";
+      e.target.style.outline = "2px solid red";
+      e.target.style.border = "none";
+    } else if (/^[A-Za-z]*$/.test(value)) {
+      e.target.style.transform = "scale(1)";
+      e.target.style.outline = "2px solid blue";
+      e.target.style.border = "none";
+      setUsername(value);
+    }
+  };
+  const handleBalance = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(Number(e.target.value))) {
+      e.target.style.transform = "scale(1.05)";
+      e.target.style.outline = "2px solid red";
+      e.target.style.border = "none";
+    } else {
+      e.target.style.transform = "scale(1)";
+      e.target.style.outline = "2px solid blue";
+      e.target.style.border = "none";
+      setBalance(Number(e.target.value));
+    }
+  };
   function login() {
-    const username = getInput("username").value.trim();
-    const balance = Number(getInput("balance").value);
 
     if (balance === 0 && username === "") {
       errorMessage(getInput("username"), getInput("balance"), "red", "red");
       getInput("username").focus();
-      console.log(balance);
-      console.log(username);
       return;
-    } else if (/\d/.test(username) || username == "") {
+    } else if (username === "") {
       errorMessage(getInput("username"), getInput("balance"), "red", "blue");
       getInput("username").focus();
       getInput("username").value = "";
       getInput("username").placeholder = "Enter a valid username";
-    } else if (isNaN(balance) || balance <= 0) {
+    } else if (balance === 0 || balance >= 10000) {
       errorMessage(getInput("balance"), getInput("username"), "red", "blue");
       getInput("balance").focus();
       getInput("balance").value = "";
-      getInput("balance").placeholder = "Enter a valid number";
+      getInput("balance").placeholder = "1 to 10,000";
     } else if (balance <= 10000) {
       let loggedIn = true;
       localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
@@ -44,9 +64,6 @@ const LoginPage = () => {
       localStorage.setItem("balance", JSON.stringify(balance));
       setLoginStatus(loggedIn);
       navigate("/");
-    } else {
-      errorMessage(getInput("balance"), getInput("username"), "red", "blue");
-      getInput("balance").focus();
     }
   }
 
@@ -77,6 +94,8 @@ const LoginPage = () => {
             type="text"
             id="username"
             placeholder="Enter your username"
+            value={username}
+            onChange={handleUsername}
           />
           <label className="font-bold text-black" htmlFor="balance-value">
             Balance
@@ -86,6 +105,8 @@ const LoginPage = () => {
             type="text"
             id="balance"
             placeholder="Between 0 - 10,000"
+            value={balance}
+            onChange={handleBalance}
           />
           <button id="login-btn" onClick={login} className="login-div-button">
             <img

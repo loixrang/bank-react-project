@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import errorMessage from "./errorMessage";
 import { useNavigate } from "react-router-dom";
+import bankLogo from "../../src/assets/images/logo-mark-blue.svg"
+import bannerLogo from "../../src/assets/images/hero-bank-illustration.svg"
+import iconLogo from "../../src/assets/images/icon-login-white.svg"
 
 const LoginPage = () => {
   const getInput = (q: string) =>
@@ -74,7 +77,7 @@ const LoginPage = () => {
           <h1 className="login-div-h1">
             <img
               className="h-10 mr-2"
-              src="src/assets/images/logo-mark-blue.svg"
+              src={bankLogo}
               alt=""
             />
             <mark className="lg:mr-2 mr-1 text-[#5B35D5] bg-transparent">
@@ -111,7 +114,7 @@ const LoginPage = () => {
           <button id="login-btn" onClick={login} className="login-div-button">
             <img
               className="h-5"
-              src="src/assets/images/icon-login-white.svg"
+              src={iconLogo}
               alt=""
             />
             Log in
@@ -120,7 +123,7 @@ const LoginPage = () => {
         <div className="login-div3">
           <img
             className="w-1/1.1"
-            src="src/assets/images/hero-bank-illustration.svg"
+            src={bannerLogo}
             alt=""
           />
           <h2 className="font-bold text-white">Your money, secure with us</h2>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import bankIllustration from "../../src/assets/images/hero-bank-illustration.svg"
 
 interface Info {
   name: string;
@@ -47,7 +48,7 @@ const Banner = ({ name, balance }: Info) => {
       <div className="w-1/4 flex items-center justify-center">
         <img
           className="w-full h-full"
-          src="/src/assets/images/hero-bank-illustration.svg"
+          src={bankIllustration}
           alt=""
         />
       </div>
